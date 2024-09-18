@@ -1,0 +1,57 @@
+plugins {
+    id "com.android.application"
+    id "kotlin-android"
+    // The Flutter Gradle Plugin must be applied after the Android and Kotlin Gradle plugins.
+    id "dev.flutter.flutter-gradle-plugin"
+}
+
+def mapsProperties = new Properties()
+def mapsPropertiesFile = rootProject.file('maps.properties')
+if (mapsPropertiesFile.exists()) {
+    mapsProperties.load(new FileInputStream(mapsPropertiesFile))
+}
+
+android {
+    namespace = "com.example.konsi_test"
+    compileSdk = 34
+    ndkVersion = flutter.ndkVersion
+
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_1_8
+    }
+
+    defaultConfig {
+        // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
+        applicationId = "com.example.konsi_test"
+        // You can update the following values to match your application needs.
+        // For more information, see: https://flutter.dev/to/review-gradle-config.
+        minSdk = 25
+        targetSdk = 34
+        versionCode = flutter.versionCode
+        versionName = flutter.versionName
+    }
+
+    buildTypes {
+        release {
+            signingConfig signingConfigs.debug
+            minifyEnabled true
+
+            manifestPlaceholders = ["googleMapsApiKey": mapsProperties['GOOGLE_MAPS_KEY']]
+        }
+        debug {
+            manifestPlaceholders = ["googleMapsApiKey": mapsProperties['GOOGLE_MAPS_KEY']]
+        }
+        profile {
+            manifestPlaceholders = ["googleMapsApiKey": mapsProperties['GOOGLE_MAPS_KEY']]
+        }
+    }
+}
+
+flutter {
+    source = "../.."
+}
