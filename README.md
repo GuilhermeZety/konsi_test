@@ -1,4 +1,4 @@
-![Frame 2](https://github.com/user-attachments/assets/81a2c59e-7a76-4492-b865-87bb0a63195c)
+![Frame 2](https://github.com/user-attachments/assets/576829fe-7608-4c40-afa0-c9f2965cdfb4)
 
 # Konsi Test ReadMe
 
